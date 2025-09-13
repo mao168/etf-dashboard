@@ -664,10 +664,10 @@ const App = () => {
               </div>
               <div className="space-y-2">
                 <h1 className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 bg-clip-text text-transparent font-sans tracking-tight">
-                  ETF Data Terminal
+                  ETF Daily Mini Terminal
                 </h1>
                 <p className="text-sm sm:text-lg text-gray-300 font-medium tracking-wide">
-                  Professional Cryptocurrency ETF Analytics & AI Insights
+                  Professional Cryptocurrency ETF Analytics & Free AI Insights
                 </p>
               </div>
             </div>
