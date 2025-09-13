@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Direct Test</title>
+    <style>
+        body { background: green; color: white; font-size: 24px; padding: 20px; }
+    </style>
+</head>
+<body>
+    <div id="root">Loading...</div>
+    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <script>
+        console.log('Direct test script loading...');
+        
+        function App() {
+            return React.createElement('div', { 
+                style: { fontSize: '32px', color: 'yellow' } 
+            }, '✅ DIRECT TEST SUCCESS - React is working!');
+        }
+        
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(React.createElement(App));
+        
+        console.log('Direct test completed');
+    </script>
+</body>
+</html>
