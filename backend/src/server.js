@@ -60,12 +60,7 @@ app.use(errorHandler);
 // Initialize database and start server
 async function startServer() {
   try {
-    console.log('🔧 Initializing database...');
-    await initializeDatabase();
-    
-    console.log('⏰ Starting scheduler...');
-    startScheduler();
-    
+    // Start server first
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`🚀 ETF Dashboard API Server running on port ${PORT}`);
       console.log(`📡 Health check: http://0.0.0.0:${PORT}/api/health`);
@@ -73,6 +68,20 @@ async function startServer() {
       console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
       console.log(`🔑 API Key configured: ${process.env.SOSO_API_KEY ? 'Yes' : 'No'}`);
     });
+
+    // Initialize database after server starts
+    try {
+      console.log('🔧 Initializing database...');
+      await initializeDatabase();
+      console.log('✅ Database initialized successfully');
+      
+      console.log('⏰ Starting scheduler...');
+      startScheduler();
+      console.log('✅ Scheduler started successfully');
+    } catch (dbError) {
+      console.warn('⚠️ Database initialization failed, continuing without database:', dbError.message);
+    }
+    
   } catch (error) {
     console.error('❌ Failed to start server:', error);
     process.exit(1);
