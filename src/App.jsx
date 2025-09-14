@@ -403,7 +403,8 @@ const formatUpdateTime = () => {
 const getInitialLoadingData = () => {
   return {
     updateTime: "正在获取数据...",
-    date: formatUpdateTime().split(' ')[0].replace(/-/g, '年').replace(/(\d{4})年(\d{2})年(\d{2})/, '$1年$2月$3日'),
+    apiDataDate: "2025-09-12", // 使用固定的数据日期，避免显示当前日期
+    date: "2025年09月12日", // 直接使用固定的格式化日期
     btc: {
       dailyInflow: 0,
       totalAssets: 0, 
@@ -752,13 +753,13 @@ const App = () => {
               symbol="BTC" 
               name="比特币现货 ETF"
               data={data.btc}
-              date={data.date}
+              date={data.apiDataDate ? data.apiDataDate.replace(/-/g, '年').replace(/(\d{4})年(\d{2})年(\d{2})/, '$1年$2月$3日') : data.date}
             />
             <ETFDataCard 
               symbol="ETH" 
               name="以太坊现货 ETF"
               data={data.eth}
-              date={data.date}
+              date={data.apiDataDate ? data.apiDataDate.replace(/-/g, '年').replace(/(\d{4})年(\d{2})年(\d{2})/, '$1年$2月$3日') : data.date}
             />
           </div>
         </section>
