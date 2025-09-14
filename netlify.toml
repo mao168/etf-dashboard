@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "npm ci --legacy-peer-deps && npm run build"
+  command = "npm ci --legacy-peer-deps && npx vite build"
 
 [build.environment]
   NODE_VERSION = "20.11.0"
