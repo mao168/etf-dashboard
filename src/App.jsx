@@ -9,7 +9,7 @@ import { fetchETFHistoryData } from './fetchHistoryData';
 
 // API 配置 - 后端服务API
 const API_CONFIG = {
-  baseURL: 'http://localhost:3001/api', // 本地后端API
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001/api', // 使用环境变量或本地开发地址
   // API密钥现在由后端处理，前端不再需要
 };
 
