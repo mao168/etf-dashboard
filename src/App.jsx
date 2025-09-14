@@ -58,6 +58,7 @@ const fetchRealETFData = async () => {
           lastUpdateDate: ethData.updateTime.split('T')[0]
         },
         updateTime: data.updateTime,
+        apiDataDate: data.apiDataDate,
         aiInsight: data.aiInsight
       };
     };
@@ -202,8 +203,8 @@ const generateBroadcastText = (data) => {
   const btcTrend = data.btc.isPositive ? "⬆️" : "⬇️";
   const ethTrend = data.eth.isPositive ? "⬆️" : "⬇️";
   
-  // 获取API数据的日期（精确到日）
-  const apiDate = data.btc.lastUpdateDate || data.eth.lastUpdateDate || '2025-09-12';
+  // 获取API数据的日期（精确到日）- 优先使用apiDataDate字段
+  const apiDate = data.apiDataDate || data.btc.lastUpdateDate || data.eth.lastUpdateDate || '2025-09-12';
   const formattedDate = apiDate.replace(/-/g, '年').replace(/(\d{4})年(\d{2})年(\d{2})/, '$1年$2月$3日') + ' (美东)';
   
   // 使用API的更新时间作为推送时间
