@@ -73,7 +73,7 @@ class SoSoValueService {
     const totalAssets = parseFloat(data.totalNetAssets?.value || 0);
     const marketRatio = parseFloat(data.totalNetAssetsPercentage?.value || 0) * 100;
     const cumulativeInflow = parseFloat(data.cumNetInflow?.value || 0);
-    const lastUpdateDate = data.dailyNetInflow?.lastUpdateDate || data.totalNetAssets?.lastUpdateDate || new Date().toISOString().split('T')[0];
+    const lastUpdateDate = data.dailyNetInflow?.lastUpdateDate || data.totalNetAssets?.lastUpdateDate || '2025-09-12';
     
     return {
       symbol: symbol,
