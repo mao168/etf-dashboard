@@ -69,18 +69,9 @@ async function startServer() {
       console.log(`🔑 API Key configured: ${process.env.SOSO_API_KEY ? 'Yes' : 'No'}`);
     });
 
-    // Initialize database after server starts
-    try {
-      console.log('🔧 Initializing database...');
-      await initializeDatabase();
-      console.log('✅ Database initialized successfully');
-      
-      console.log('⏰ Starting scheduler...');
-      startScheduler();
-      console.log('✅ Scheduler started successfully');
-    } catch (dbError) {
-      console.warn('⚠️ Database initialization failed, continuing without database:', dbError.message);
-    }
+    // Skip database and scheduler for now to simplify startup
+    console.log('⚠️ Skipping database and scheduler initialization for Railway deployment');
+    console.log('✅ Server started successfully in minimal mode');
     
   } catch (error) {
     console.error('❌ Failed to start server:', error);
