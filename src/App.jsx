@@ -344,7 +344,7 @@ const ETFDataCard = ({ symbol, name, data, date }) => {
       
       <CardContent className="space-y-4">
         {/* 今日净流入 - 最显眼位置 */}
-        <div className="p-3 sm:p-4 md:p-5 bg-black border border-gray-700 rounded-lg">
+        <div className="p-2 sm:p-4 md:p-5 bg-black border border-gray-700 rounded-lg">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
               <p className="text-gray-500 text-sm sm:text-base font-mono mb-1">📈 今日净流向:</p>
@@ -364,7 +364,7 @@ const ETFDataCard = ({ symbol, name, data, date }) => {
         </div>
 
         {/* 关键指标 - 终端风格 */}
-        <div className="bg-black border border-gray-700 rounded-lg p-3 sm:p-4 space-y-3 sm:space-y-2">
+        <div className="bg-black border border-gray-700 rounded-lg p-2 sm:p-4 space-y-2 sm:space-y-2">
           <div className="flex items-center justify-between py-2 sm:py-1.5">
             <span className="text-gray-500 text-sm sm:text-base font-mono">🏦 总资产净值:</span>
             <span className="text-gray-300 font-mono text-base sm:text-lg font-tabular-nums">{formatToYi(data.totalAssets)} USD</span>
@@ -485,16 +485,12 @@ const App = () => {
       } else {
         console.log('⚠️  API数据格式不正确，使用备用数据');
         setHistoryData(mockData.history);
-        toast.info("📊 使用静态数据", {
-          description: "API端点不可用，显示静态模拟数据",
-        });
+        console.log('📊 使用历史静态数据');
       }
     } catch (error) {
       console.error('❌ 加载历史数据失败:', error);
       setHistoryData(mockData.history);
-      toast.error("❌ 数据加载失败", {
-        description: "使用备用数据显示",
-      });
+      console.log('❌ 数据加载失败，使用备用数据');
     }
   };
 
@@ -590,9 +586,7 @@ const App = () => {
     } catch (error) {
       console.error('❌ 加载真实数据失败:', error);
       setUsingRealData(false);
-      toast.error("❌ 真实数据加载失败", {
-        description: "继续使用模拟数据",
-      });
+      console.log('❌ 真实数据加载失败');
     } finally {
       setIsLoading(false);
     }
@@ -653,7 +647,7 @@ const App = () => {
     <div className="min-h-screen bg-gray-950 text-gray-100">
       {/* Header */}
       <header className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border-b border-gray-600 shadow-2xl sticky top-0 z-10 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+        <div className="max-w-6xl mx-auto px-3 sm:px-6 py-3 sm:py-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6">
             <div className="flex items-center space-x-3 sm:space-x-4">
               <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 rounded-xl flex items-center justify-center shadow-lg border border-blue-400/30 backdrop-blur-sm">
@@ -698,9 +692,9 @@ const App = () => {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8">
+      <main className="max-w-6xl mx-auto px-3 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8">
         {/* Status Bar */}
-        <div className="bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900 border border-slate-600 rounded-xl p-3 sm:p-4 md:p-5 shadow-2xl">
+        <div className="bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900 border border-slate-600 rounded-xl p-2 sm:p-4 md:p-5 shadow-2xl">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-base sm:text-lg font-medium gap-3 sm:gap-4">
             <div className="flex items-center justify-center sm:justify-start space-x-3 sm:space-x-4 md:space-x-6">
               <div className={`flex items-center space-x-2 px-3 py-1.5 rounded-full ${usingRealData ? "bg-green-500/20 border border-green-500/40" : "bg-amber-500/20 border border-amber-500/40"}`}>
