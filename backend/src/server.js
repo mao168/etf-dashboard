@@ -66,10 +66,12 @@ async function startServer() {
     console.log('⏰ Starting scheduler...');
     startScheduler();
     
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
       console.log(`🚀 ETF Dashboard API Server running on port ${PORT}`);
-      console.log(`📡 Health check: http://localhost:${PORT}/api/health`);
-      console.log(`📊 ETF API: http://localhost:${PORT}/api/etf`);
+      console.log(`📡 Health check: http://0.0.0.0:${PORT}/api/health`);
+      console.log(`📊 ETF API: http://0.0.0.0:${PORT}/api/etf`);
+      console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
+      console.log(`🔑 API Key configured: ${process.env.SOSO_API_KEY ? 'Yes' : 'No'}`);
     });
   } catch (error) {
     console.error('❌ Failed to start server:', error);
