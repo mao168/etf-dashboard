@@ -331,8 +331,8 @@ const ETFDataCard = ({ symbol, name, data, date }) => {
               )}
             </div>
             <div>
-              <CardTitle className="text-3xl sm:text-2xl font-bold text-gray-100 font-mono">{symbol} ETF</CardTitle>
-              <CardDescription className="text-gray-500 font-mono text-lg sm:text-base">{name}</CardDescription>
+              <CardTitle className="text-xl sm:text-2xl font-bold text-gray-100 font-mono">{symbol} ETF</CardTitle>
+              <CardDescription className="text-gray-500 font-mono text-sm sm:text-base">{name}</CardDescription>
             </div>
           </div>
           <div className="flex items-center space-x-2">
@@ -347,8 +347,8 @@ const ETFDataCard = ({ symbol, name, data, date }) => {
         <div className="p-3 sm:p-4 md:p-5 bg-black border border-gray-700 rounded-lg">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
-              <p className="text-gray-500 text-lg sm:text-base font-mono mb-1">📈 今日净流向:</p>
-              <p className={`text-4xl sm:text-3xl font-bold font-tabular-nums ${trendColor} font-mono`}>
+              <p className="text-gray-500 text-sm sm:text-base font-mono mb-1">📈 今日净流向:</p>
+              <p className={`text-2xl sm:text-3xl font-bold font-tabular-nums ${trendColor} font-mono`}>
                 {flowEmoji} {formatToYi(Math.abs(data.dailyInflow))} USD
               </p>
             </div>
@@ -366,18 +366,18 @@ const ETFDataCard = ({ symbol, name, data, date }) => {
         {/* 关键指标 - 终端风格 */}
         <div className="bg-black border border-gray-700 rounded-lg p-3 sm:p-4 space-y-3 sm:space-y-2">
           <div className="flex items-center justify-between py-2 sm:py-1.5">
-            <span className="text-gray-500 text-lg sm:text-base font-mono">🏦 总资产净值:</span>
-            <span className="text-gray-300 font-mono text-xl sm:text-lg font-tabular-nums">{formatToYi(data.totalAssets)} USD</span>
+            <span className="text-gray-500 text-sm sm:text-base font-mono">🏦 总资产净值:</span>
+            <span className="text-gray-300 font-mono text-base sm:text-lg font-tabular-nums">{formatToYi(data.totalAssets)} USD</span>
           </div>
           
           <div className="flex items-center justify-between py-2 sm:py-1.5 border-t border-gray-800">
-            <span className="text-gray-500 text-lg sm:text-base font-mono">📊 市值占比:</span>
-            <span className="text-gray-300 font-mono text-xl sm:text-lg font-tabular-nums">{data.marketRatio}%</span>
+            <span className="text-gray-500 text-sm sm:text-base font-mono">📊 市值占比:</span>
+            <span className="text-gray-300 font-mono text-base sm:text-lg font-tabular-nums">{data.marketRatio}%</span>
           </div>
           
           <div className="flex items-center justify-between py-2 sm:py-1.5 border-t border-gray-800">
-            <span className="text-gray-500 text-lg sm:text-base font-mono">💰 累计净流入:</span>
-            <span className="text-gray-300 font-mono text-xl sm:text-lg font-tabular-nums">{formatToYi(data.cumulativeInflow)} USD</span>
+            <span className="text-gray-500 text-sm sm:text-base font-mono">💰 累计净流入:</span>
+            <span className="text-gray-300 font-mono text-base sm:text-lg font-tabular-nums">{formatToYi(data.cumulativeInflow)} USD</span>
           </div>
         </div>
       </CardContent>
@@ -663,10 +663,10 @@ const App = () => {
                 </div>
               </div>
               <div className="space-y-2">
-                <h1 className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 bg-clip-text text-transparent font-sans tracking-tight">
+                <h1 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 bg-clip-text text-transparent font-sans tracking-tight">
                   ETF Daily Mini Terminal
                 </h1>
-                <p className="text-sm sm:text-lg text-gray-300 font-medium tracking-wide">
+                <p className="text-xs sm:text-sm text-gray-300 font-medium tracking-wide">
                   Professional Cryptocurrency ETF Analytics & Free AI Insights
                 </p>
               </div>
@@ -730,7 +730,7 @@ const App = () => {
           <div className="flex items-center justify-between flex-wrap gap-2">
             <div className="flex items-center space-x-2">
               <Database className="w-5 h-5 sm:w-6 sm:h-6 text-green-400" />
-              <h2 className="text-xl sm:text-2xl font-bold text-green-400 font-mono">实时数据监控</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-green-400 font-mono">实时数据监控</h2>
             </div>
             <div className="flex items-center space-x-3">
               <Button
@@ -772,7 +772,7 @@ const App = () => {
         <section className="space-y-4 sm:space-y-6">
           <div className="flex items-center space-x-2">
             <Radio className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-green-400" />
-            <h2 className="text-xl sm:text-2xl font-bold text-green-400 font-mono">最新播报</h2>
+            <h2 className="text-lg sm:text-xl font-bold text-green-400 font-mono">最新播报</h2>
           </div>
           
           <CodeBlock
@@ -786,7 +786,7 @@ const App = () => {
         <section className="space-y-4 sm:space-y-6">
           <div className="flex items-center space-x-2 flex-wrap gap-2">
             <Bot className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-blue-400" />
-            <h2 className="text-xl sm:text-2xl font-bold text-blue-400 font-mono">AI 智能解读</h2>
+            <h2 className="text-lg sm:text-xl font-bold text-blue-400 font-mono">AI 智能解读</h2>
             <Badge variant="outline" className="border-blue-500 text-blue-400 text-sm sm:text-xs font-mono">
               GPT-5 就绪
             </Badge>
@@ -815,7 +815,7 @@ const App = () => {
                 <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                   <Copy className="w-4 h-4 text-gray-400 hover:text-blue-400" />
                 </div>
-                <p className="text-gray-300 leading-loose text-xl whitespace-pre-line pr-8">
+                <p className="text-gray-300 leading-relaxed text-sm sm:text-base whitespace-pre-line pr-4 sm:pr-8">
                   {(() => {
                     try {
                       return data.getAIInsight();
@@ -834,7 +834,7 @@ const App = () => {
         <section className="space-y-4 sm:space-y-6">
           <div className="flex items-center space-x-2">
             <Activity className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400" />
-            <h2 className="text-xl sm:text-2xl font-bold text-orange-400 font-mono">ETF 历史数据</h2>
+            <h2 className="text-lg sm:text-xl font-bold text-orange-400 font-mono">ETF 历史数据</h2>
           </div>
           
           <Card className="bg-gray-900 border-gray-700">
