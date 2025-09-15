@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Copy, Terminal, Activity, Database, Clock, TrendingUp, TrendingDown, Bot, Zap, DollarSign, Target, Wallet, Radio, FileText, Share, MessageCircle, Sparkles, Send, BarChart3, RefreshCw } from 'lucide-react';
 import { toast } from 'sonner';
 import { fetchETFHistoryData } from './fetchHistoryData';
+import ETFPredictionModule from './components/ETFPredictionModule';
 
 // API 配置 - 后端服务API
 const API_CONFIG = {
@@ -826,6 +827,14 @@ const App = () => {
           </Card>
         </section>
 
+        {/* ETF Prediction Module - 传递实时数据 */}
+        <ETFPredictionModule 
+          btcData={data.btc}
+          ethData={data.eth}
+          btcHistory={historyData.btc}
+          ethHistory={historyData.eth}
+        />
+
         {/* Historical Logs Section */}
         <section className="space-y-4 sm:space-y-6">
           <div className="flex items-center space-x-2">
@@ -838,7 +847,7 @@ const App = () => {
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
                   <Database className="w-6 h-6 text-orange-400" />
-                  <CardTitle className="text-orange-400 text-xl font-mono">过去 30 日的历史记录</CardTitle>
+                  <CardTitle className="text-orange-400 text-xl font-mono">过去 7 日的历史记录</CardTitle>
                 </div>
               </div>
             </CardHeader>
