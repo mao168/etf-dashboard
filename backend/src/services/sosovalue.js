@@ -118,12 +118,13 @@ class SoSoValueService {
       // 使用API数据的实际更新时间，而不是当前获取时间
       const apiDataDate = btcData.lastUpdateDate || ethData.lastUpdateDate || '2025-09-12';
       
-      // 将API数据日期转换为第二天的时间（API通常在第二天更新前一天的数据）
-      const updateDate = new Date(apiDataDate + 'T00:00:00');
-      updateDate.setDate(updateDate.getDate() + 1); // 第二天
-      updateDate.setHours(9, 30, 0, 0); // 设置为上午9:30（美股开盘前更新时间）
+      // 使用实际的更新时间（btcData或ethData中的updateTime）
+      const btcUpdateTime = btcData.updateTime ? new Date(btcData.updateTime) : null;
+      const ethUpdateTime = ethData.updateTime ? new Date(ethData.updateTime) : null;
+      const actualUpdateTime = btcUpdateTime || ethUpdateTime || new Date();
       
-      const formattedUpdateTime = updateDate.toLocaleString('zh-CN', {
+      // 格式化为香港时间
+      const formattedUpdateTime = actualUpdateTime.toLocaleString('zh-CN', {
         timeZone: 'Asia/Hong_Kong',
         year: 'numeric',
         month: '2-digit',

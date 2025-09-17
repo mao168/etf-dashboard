@@ -201,8 +201,8 @@ const generateBroadcastText = (data) => {
   const ethFlow = data.eth.isPositive ? "净流入" : "净流出";
   const btcEmoji = data.btc.isPositive ? "🟩" : "🟥";
   const ethEmoji = data.eth.isPositive ? "🟩" : "🟥";
-  const btcTrend = data.btc.isPositive ? "⬆️" : "⬇️";
-  const ethTrend = data.eth.isPositive ? "⬆️" : "⬇️";
+  const btcTrend = data.btc.isPositive ? "" : "";
+  const ethTrend = data.eth.isPositive ? "" : "";
   
   // 获取API数据的日期（精确到日）- 优先使用apiDataDate字段
   const apiDate = data.apiDataDate || data.btc.lastUpdateDate || data.eth.lastUpdateDate || '2025-09-12';
@@ -299,7 +299,7 @@ const ETFDataCard = ({ symbol, name, data, date }) => {
   const trendColor = isPositive ? "text-green-400" : "text-red-400";
   const flowText = isPositive ? "净流入" : "净流出";
   const flowEmoji = isPositive ? "🟩" : "🟥";
-  const trendArrow = isPositive ? "⬆️" : "⬇️";
+  const trendArrow = isPositive ? "" : "";
   
   // 格式化日期为简短格式 (如: 09-13)
   const formatShortDate = (dateStr) => {

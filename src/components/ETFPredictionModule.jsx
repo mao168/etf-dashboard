@@ -64,40 +64,69 @@ const generatePrediction = (etfType, currentData, historyData) => {
   const calculateTechnicalScore = (currentData, historyTrend) => {
     let score = 50; // 基础分数
     
-    // 1. 当前净流入情况 (权重30%)
+    // 添加时间因子来增加随机性
+    const timeHash = new Date().getHours() + new Date().getMinutes();
+    const randomFactor = (Math.sin(timeHash) * 5); // -5到5的随机波动
+    
+    // 1. 当前净流入情况 (权重35%)
     if (currentData.dailyInflow > 0) {
-      score += Math.min(20, (currentData.dailyInflow / 100000000) * 2); // 每亿美元加2分，最多20分
+      score += Math.min(25, (currentData.dailyInflow / 100000000) * 3); // 每亿美元加3分，最多25分
     } else {
-      score -= Math.min(20, Math.abs(currentData.dailyInflow / 100000000) * 2);
+      score -= Math.min(25, Math.abs(currentData.dailyInflow / 100000000) * 3);
     }
     
-    // 2. 历史趋势 (权重20%)
+    // 2. 历史趋势 (权重25%)
     const inflowRate = historyTrend.inflowDays / historyTrend.totalDays;
-    score += (inflowRate - 0.5) * 40; // 50%为中性，高于50%加分
+    score += (inflowRate - 0.5) * 50; // 50%为中性，高于50%加分
     
-    // 3. 市值占比变化 (权重10%)
-    if (currentData.marketRatio > 5) {
+    // 3. 市值占比变化 (权重15%)
+    if (currentData.marketRatio > 6) {
+      score += 10;
+    } else if (currentData.marketRatio > 5) {
       score += 5;
+    } else if (currentData.marketRatio < 4) {
+      score -= 5;
     }
     
-    // 4. 累计净流入规模 (权重10%)
+    // 4. 累计净流入规模 (权重15%)
     if (etfType === 'BTC') {
-      score += currentData.cumulativeInflow > 50000000000 ? 5 : 0;
+      if (currentData.cumulativeInflow > 60000000000) {
+        score += 10;
+      } else if (currentData.cumulativeInflow > 50000000000) {
+        score += 5;
+      } else if (currentData.cumulativeInflow < 40000000000) {
+        score -= 5;
+      }
     } else {
-      score += currentData.cumulativeInflow > 10000000000 ? 5 : 0;
+      if (currentData.cumulativeInflow > 15000000000) {
+        score += 10;
+      } else if (currentData.cumulativeInflow > 10000000000) {
+        score += 5;
+      } else if (currentData.cumulativeInflow < 5000000000) {
+        score -= 5;
+      }
     }
     
     // 5. 连续流入/流出天数影响 (权重10%)
-    const recentTrend = historyData ? historyData.slice(0, 3) : [];
+    const recentTrend = historyData ? historyData.slice(0, 5) : [];
     const consecutiveInflows = recentTrend.filter(d => d.inflow > 0).length;
-    if (consecutiveInflows === 3) {
+    if (consecutiveInflows >= 4) {
+      score += 8; // 连续4天以上流入，动能很强
+    } else if (consecutiveInflows === 3) {
       score += 5; // 连续3天流入，动能强
-    } else if (consecutiveInflows === 0) {
-      score -= 5; // 连续3天流出，动能弱
+    } else if (consecutiveInflows <= 1) {
+      score -= 8; // 连续流出，动能弱
     }
     
-    // 确保分数在0-100之间
-    return Math.max(15, Math.min(85, Math.round(score)));
+    // 6. 加入市场情绪因子（模拟的）
+    const sentimentBonus = Math.sin(Date.now() / 100000) * 10; // -10到10的波动
+    score += sentimentBonus;
+    
+    // 添加随机因子使预测更动态
+    score += randomFactor;
+    
+    // 确保分数在合理范围内，但允许更大的变化范围
+    return Math.max(5, Math.min(95, Math.round(score)));
   };
 
   // 主预测逻辑
